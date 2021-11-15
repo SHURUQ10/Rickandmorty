@@ -21,7 +21,7 @@ class ViewController: UIViewController {
 
     func getCharacters(){
         var urIComponents = URLComponents()
-        urIComponents.scheme = "http"
+        urIComponents.scheme = "https"
         urIComponents.host = "dog-api.kinduff.com"
         urIComponents.path = "/api/facts?number=5"
         
