@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        getCharacters()
     }
 
     func getCharacters(){
@@ -28,18 +29,23 @@ class ViewController: UIViewController {
         var urIRequest = URLRequest(url: urIComponents.url!)
         let urISession = URLSession.shared
         
-        let task = urISession.dataTask(with: urIRequest)
-        {
-            (date:Data?, responce: URLResponse?, error:Error?) in
-            //{ (data: Data?, response: URLResponse?, error: Error?) in
+        let task = urISession.dataTask(with: urIRequest, completionHandler: { data, response, error in
             do {
                 let jsonDecoder = JSONDecoder()
                 let facts = try jsonDecoder.decode([factsresponse].self, from: data!)
+                print(facts)
                 //                print(String(data: data, encoding: .utf8))
                 
+            } catch {
+                
             }
+        })
+    
+        task.resume()
+            //{ (data: Data?, response: URLResponse?, error: Error?) in
+
             
-            task.resume()
+           
         }
     }
-}
+
